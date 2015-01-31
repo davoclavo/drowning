@@ -44,6 +44,7 @@ players = [{'id': 1,
             'port': 5001,
            }]
 
+global_score = [0, 0]
 while True:
   terms = ['','']
   scores = [0,0]
@@ -52,7 +53,11 @@ while True:
          'blue')
   rows, cols = os.popen('stty size', 'r').read().split()
   footer = 'streaming live @ drowning.ngrok.com'
+  padding = int(cols) - len(footer) - 15
+  print(' '*padding + footer)
 
+
+  footer = 'P1 %s - P2 %s' % (round(global_score[0]), round(global_score[1]))
   padding = int(cols) - len(footer) - 15
   print(' '*padding + footer)
 
@@ -116,6 +121,9 @@ while True:
     msg = msg.build()
     client.send(msg)
 
+  global_score[0] += scores[0]
+  global_score[1] += scores[1]
+
   reset = input('')
   if reset == '*':
     for player in players:
@@ -124,3 +132,4 @@ while True:
       msg = osc_message_builder.OscMessageBuilder(address=address)
       msg = msg.build()
       client.send(msg)
+    global_score = [0,0]

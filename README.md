@@ -41,7 +41,8 @@ Broadcast
 =========
 
 ```
-brew install ttyrec ngrok
+brew install ttyrec ngrok npm
+npm install -g ttycast
 ```
 
 
@@ -69,5 +70,6 @@ ngrok -subdomain=drowning 13377
 ### · fun
 
 ```
+brew install sl
 train="{ while true; do sl 2>&1; done } | ttycast"
 ```
