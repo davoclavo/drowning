@@ -1,0 +1,4 @@
+colorama==0.3.3
+pyfiglet==0.7.2
+python-osc==1.4.2
+termcolor==1.1.0
